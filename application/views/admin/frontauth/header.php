@@ -8,8 +8,8 @@
                 <!-- LOGO -->
                 <a class="navbar-brand mr-0 mr-md-2 logo">
                     <span class="logo-lg">
-
-                        <span class="d-inline h5 ml-1 text-logo"><span class="text-warning">ADMIN</span> WEBSITE KONI KOTA PEKANBARU</span>
+                        <?php foreach ($opd as $r) { ?>
+                            <span class="d-inline h5 ml-1 text-logo"><span class="text-danger">ADMIN</span> WEBSITE <?php echo $r->nama_pendek ?></span><?php } ?>
                     </span>
                     <span class="logo-sm">
                         <img src="assets/images/logo.png" alt="" height="24">

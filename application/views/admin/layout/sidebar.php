@@ -3,30 +3,22 @@
 <!-- ========== Left Sidebar Start ========== -->
 <div class="left-side-menu">
     <div class="media user-profile mt-2 mb-2">
-        <img src="<?= base_url('assets/'); ?>assets/images/users/avatar.jpg" class="avatar-sm rounded-circle mr-2" alt="Shreyu" />
-        <img src="<?= base_url('assets/'); ?>assets/images/users/avatar.jpg" class="avatar-xs rounded-circle mr-2" alt="Shreyu" />
+        <img src="<?= base_url('assets/vendor/logo/avat.png'); ?>" class="avatar-sm rounded-circle mr-2" alt="Shreyu" />
+        <img src="<?= base_url('assets/vendor/logo/avat.png'); ?>" class="avatar-xs rounded-circle mr-2" alt="Shreyu" />
 
         <div class="media-body">
-            <h6 class="pro-user-name mt-0 mb-0"><?= $user['nama'] ?></h6>
+            <h6 class="pro-user-name mt-0 mb-0"><?= $this->session->userdata('username'); ?></h6>
             <span class="pro-user-desc">Administrator</span>
+            <a href="<?php echo site_url('auth/logout') ?>" class="btn btn-danger btn-xs">
+                <!-- <i data-feather="log-out" class="icon-dual icon-xs mr-2"></i> -->
+                <span>Logout</span>
+            </a>
         </div>
         <div class="dropdown align-self-center profile-dropdown-menu">
             <a class="dropdown-toggle mr-0" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                 <span data-feather="chevron-down"></span>
             </a>
             <div class="dropdown-menu profile-dropdown">
-                <a href="#" class="dropdown-item notify-item">
-                    <i data-feather="user" class="icon-dual icon-xs mr-2"></i>
-                    <span>My Account</span>
-                </a>
-
-                <a href="#" class="dropdown-item notify-item">
-                    <i data-feather="settings" class="icon-dual icon-xs mr-2"></i>
-                    <span>Settings</span>
-                </a>
-
-
-
                 <div class="dropdown-divider"></div>
 
                 <a href="<?php echo site_url('auth/logout') ?>" class="dropdown-item notify-item">
@@ -40,8 +32,6 @@
         <!--- Sidemenu -->
         <div id="sidebar-menu" class="slimscroll-menu">
             <ul class="metismenu" id="menu-bar">
-
-
                 <li>
                     <a href="<?= site_url('admin') ?>">
                         <i data-feather="home"></i>
@@ -53,32 +43,84 @@
                 <li>
                     <a href="javascript: void(0);">
                         <i data-feather="inbox"></i>
-                        <span> Profil </span>
+                        <span> Unit Kerja </span>
                         <span class="menu-arrow"></span>
                     </a>
 
                     <ul class="nav-second-level" aria-expanded="false">
                         <li>
-                            <a href="<?= site_url('admin/profil/sejarah') ?>">Sejarah</a>
+                            <a href="<?= site_url('admin/master') ?>">Fakultas</a>
                         </li>
                         <li>
-                            <a href="<?= site_url('admin/profil/organisasi') ?>">Struktur Organisasi</a>
+                            <a href="<?= site_url('admin/master/jurusan') ?>">Jurusan</a>
                         </li>
                         <li>
-                            <a href="<?= site_url('admin/profil/visi') ?>">Visi</a>
-                        </li>
-                        <li>
-                            <a href="<?= site_url('admin/profil/misi') ?>">Misi</a>
+                            <a href="<?= site_url('admin/master/prodi') ?>">Program Studi</a>
                         </li>
 
                     </ul>
                 </li>
+                <li class="menu-title">Data Program</li>
                 <li>
-                    <a href="<?= site_url('admin/pengurus/data') ?>">
-                        <i data-feather="calendar"></i>
-                        <span> Pegawai </span>
+                    <a href="javascript: void(0);">
+                        <i data-feather="inbox"></i>
+                        <span> Program KM </span>
+                        <span class="menu-arrow"></span>
                     </a>
+
+                    <ul class="nav-second-level" aria-expanded="false">
+                        <?php
+
+
+                        $allpo = $this->db->query("SELECT * FROM tb_program");
+
+                        foreach ($allpo->result() as $li) { ?>
+                            <li>
+                                <a href="<?= site_url($li->link_url) ?>"><?= $li->nama_program; ?></a>
+                            </li>
+
+                        <?php } ?>
+                    </ul>
                 </li>
+                <li class="menu-title">Data Website</li>
+                <li>
+                    <a href="javascript: void(0);">
+                        <i data-feather="inbox"></i>
+                        <span> Berita </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+
+                    <ul class="nav-second-level" aria-expanded="false">
+                        <li>
+                            <a href="<?= site_url('admin/berita/data') ?>">Buat Berita</a>
+                        </li>
+                        <li>
+                            <a href="<?= site_url('admin/berita/kategori') ?>">Kategori Berita</a>
+                        </li>
+
+
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript: void(0);">
+                        <i data-feather="inbox"></i>
+                        <span> Profil </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+
+                    <ul class="nav-second-level" aria-expanded="false">
+
+                        <li>
+                            <a href="<?= site_url('admin/profil') ?>">Profil dan Peranan</a>
+                        </li>
+
+                        <li>
+                            <a href="<?= site_url('admin/profil/pengelola') ?>">Pengelola Program</a>
+                        </li>
+
+                    </ul>
+                </li>
+
                 <li>
                     <a href="javascript: void(0);">
                         <i data-feather="inbox"></i>
@@ -119,7 +161,7 @@
                 </li>
 
 
-                <li>
+                <!-- <li>
                     <a href="javascript: void(0);">
                         <i data-feather="inbox"></i>
                         <span> Unit Kerja </span>
@@ -128,33 +170,36 @@
 
                     <ul class="nav-second-level" aria-expanded="false">
                         <li>
-                            <a href="email-inbox.html">Kategori Unitkerja</a>
+                            <a href="<?= site_url('admin/unitkerja/kategori') ?>">Kategori Unitkerja</a>
                         </li>
                         <li>
-                            <a href="email-read.html">Data Unitkerja</a>
+                            <a href="<?= site_url('admin/unitkerja/data') ?>">Data Unitkerja</a>
                         </li>
 
                     </ul>
-                </li>
-                <li class="menu-title">Data Berita</li>
+                </li> -->
+                <li class="menu-title">Pengaturan</li>
                 <li>
-                    <a href="apps-calendar.html">
-                        <i data-feather="calendar"></i>
-                        <span> Berita </span>
+                    <a href="<?= site_url('admin/user') ?>">
+                        <i data-feather="user"></i>
+                        <span> Pengguna</span>
                     </a>
                 </li>
+
                 <li>
-                    <a href="apps-calendar.html">
+                    <a href="<?= site_url('admin/pengaturan/profilopd') ?>">
                         <i data-feather="calendar"></i>
-                        <span> Kategori Berita </span>
+                        <span> Profil Website </span>
                     </a>
                 </li>
+
                 <li>
-                    <a href="apps-calendar.html">
+                    <a href="<?= site_url('admin/pengaturan/slider') ?>">
                         <i data-feather="calendar"></i>
-                        <span> Tag Berita </span>
+                        <span> Slider Website</span>
                     </a>
                 </li>
+
 
             </ul>
         </div>

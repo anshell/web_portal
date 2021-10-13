@@ -32,7 +32,7 @@
 
                                             <input type="hidden" class="form-control" value="<?php echo $r->id_kat ?>" name="id_kat"></input>
 
-
+                                            <input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>">
                                             <div class="form-group row">
                                                 <label class="col-lg-2 col-form-label" for="example-textarea">Kategori </label>
                                                 <div class="col-lg-10">

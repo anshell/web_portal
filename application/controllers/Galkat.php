@@ -9,13 +9,13 @@ class Galkat extends CI_Controller
         $this->load->model('M_galkat');
         $this->load->helper('url', 'form');
         $this->load->library('form_validation');
-        if (!$this->session->userdata('email')) {
+        if (!$this->session->userdata('username')) {
             redirect('auth');
         }
     }
     public function index()
     {
-        $data['user'] = $this->db->get_where('tb_admin', ['email' => $this->session->userdata('email')])->row_array();
+        $data['user'] = $this->db->get_where('tb_admin', ['username' => $this->session->userdata('username')])->row_array();
         $data['judul'] = 'Galery | Kategori';
         $data['galkat'] = $this->M_galkat->tampil_data()->result();
 

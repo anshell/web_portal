@@ -53,7 +53,8 @@
                                                         &nbsp;
                                                         <a href="<?= site_url('admin/publikasi/kategori/hapus/') . $r->id_kat ?>" class="text-danger d-inline-block" data-toggle="tooltip" data-placement="top" title="" data-original-title="hapus data">
                                                             <i class="uil uil-trash mr-1"></i>
-                                                        </a></center>
+                                                        </a>
+                                                    </center>
                                                 </td>
 
                                             </tr>
@@ -76,6 +77,7 @@
                                 <div class="form-group row">
                                     <label class="col-lg-2 col-form-label" for="example-textarea">Kategori </label>
                                     <div class="col-lg-10">
+                                        <input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>">
                                         <input class="form-control" name="nama_kat" required></input>
                                     </div>
                                     <small class="text-danger p-2"><?= form_error('nama_kat') ?></small>

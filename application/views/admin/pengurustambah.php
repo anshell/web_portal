@@ -62,12 +62,13 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-lg-2 col-form-label" for="example-textarea">Foto </label>
+                                        <label class="col-lg-2 col-form-label" for="example-textarea">Foto <span class="text-info">(400x600)</span> </label>
 
                                         <div class="col-lg-3">
                                             <input type="file" class="form-control" name="input_gambar" placeholder="NIP" required>
                                         </div>
                                     </div>
+
 
 
                                     <div class=" form-group row">

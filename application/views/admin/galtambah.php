@@ -55,11 +55,11 @@
                                         <label class="col-lg-2 col-form-label" for="example-textarea">Deskripsi</label>
 
                                         <div class="col-lg-8">
-                                            <textarea class="form-control" name="ket" rows="3" required></textarea>
+                                            <input type="text" class="form-control" name="ket" placeholder="Keterangan" required>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-lg-2 col-form-label" for="example-textarea">Foto Kegiatan </label>
+                                        <label class="col-lg-2 col-form-label" for="example-textarea">Foto Kegiatan <span class="text-info">(900x700)</span> </label>
 
                                         <div class="col-lg-3">
                                             <input type="file" class="form-control" name="file" placeholder="NIP" required>

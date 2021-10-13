@@ -29,26 +29,27 @@
                                     <div class="row">
                                         <div class="col">
 
-                                          <div class="form-group row">
+                                            <div class="form-group row">
                                                 <label class="col-lg-2 col-form-label" for="example-textarea">Judul </label>
                                                 <input type="hidden" name="id" value="<?php echo $r->id ?>">
                                                 <div class="col-lg-10">
-                                                    <input class="form-control" name="judul" value="<?php echo $r->judul ?>"  required></input>
+                                                    <input class="form-control" name="judul" value="<?php echo $r->judul ?>" required></input>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-lg-2 col-form-label" for="example-textarea">Isi Sejarah</label>
                                                 <input type="hidden" name="id" value="<?php echo $r->id ?>">
                                                 <div class="col-lg-10">
-                                                <textarea name="isi"  id="ckeditor" required><?php echo $r->isi ?></textarea>
+                                                    <textarea name="isi" class='editor' required><?php echo $r->isi ?></textarea>
                                                 </div>
                                             </div>
 
 
                                             <div class=" form-group row">
-                                            <a href="<?= site_url('admin/profil/sejarah') ?>" class="btn btn-secondary btn-sm">Batal</a>&nbsp;&nbsp;
+                                                <a href="<?= site_url('admin/profil/sejarah') ?>" class="btn btn-secondary btn-sm">Batal</a>&nbsp;&nbsp;
                                                 <button type="submit" class="btn btn-success btn-sm">Update</button>
                                             </div>
+
 
 
                                         </div>

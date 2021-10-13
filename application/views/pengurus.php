@@ -3,7 +3,7 @@
     <div class="container">
         <div class="ts-grid-box">
 
-            <h2 class="ts-title">Pengurus Koni Pekanbaru</h2>
+            <h2 class="ts-title">Pegawai</h2>
 
             <div class="post-content-area">
                 <div class="entry-content">

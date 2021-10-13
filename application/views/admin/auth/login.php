@@ -13,18 +13,19 @@
 
 
                                     <h6 class="h5 mb-0 mt-4">Selamat Datang !</h6>
-                                    <p class="text-muted mt-1 mb-4">Masukan Email dan Password untuk melakukan login.</p>
+                                    <p class="text-muted mt-1 mb-4">Masukan Nama Pengguna dan Password untuk melakukan login.</p>
                                     <?= $this->session->flashdata('message') ?>
                                     <form method="post" action="<?php echo base_url('auth/login') ?>">
                                         <div class="form-group">
-                                            <label class="form-control-label">Email Address</label>
+                                            <label class="form-control-label">Nama Pengguna</label>
                                             <div class="input-group input-group-merge">
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text">
-                                                        <i class="icon-dual" data-feather="mail"></i>
+                                                        <i class="icon-dual" data-feather="user"></i>
                                                     </span>
                                                 </div>
-                                                <input type="email" name="email" class="form-control" id="email" placeholder="Masukan email address" required>
+                                                <input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>">
+                                                <input type="text" name="username" class="form-control" id="username" placeholder="Masukan Nama Pengguna" required>
 
                                             </div>
                                         </div>
@@ -53,8 +54,8 @@
                                 </div>
                                 <div class="col-lg-4 d-none d-md-inline-block p-5">
                                     <br><br>
-
-                                    <img src="<?= base_url('assets/vendor/logo/'); ?>logos.png" alt="bglogin" width="300px">
+                                    <?php foreach ($opd as $r) { ?>
+                                        <img src="<?= base_url('berkas/icon/') . $r->file; ?>" alt="bglogin" width="300px"><?php } ?>
 
                                 </div>
                             </div>

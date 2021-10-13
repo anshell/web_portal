@@ -4,7 +4,7 @@ class M_pengurus extends CI_Model
 {
     function tampil_data()
     {
-        return $this->db->get('tb_pengurus');
+        return $this->db->get('tb_pengelola');
     }
     function edit_data($where, $table)
     {
@@ -47,7 +47,7 @@ class M_pengurus extends CI_Model
             'tipe_file' => $upload['file']['file_type']
         );
 
-        $this->db->insert('tb_pengurus', $data);
+        $this->db->insert('tb_pengelola', $data);
     }
 
     function hapus_data($where, $table)

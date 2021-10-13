@@ -3,13 +3,13 @@
     <div id="wrapper">
 
         <!-- Topbar Start -->
-        <div class="navbar navbar-expand flex-column flex-md-row navbar-custom">
+        <div class="navbar navbar-expand flex-column flex-md-row navbar-custom ">
             <div class="container-fluid">
                 <!-- LOGO -->
                 <a href="#" class="navbar-brand mr-0 mr-md-2 logo">
                     <span class="logo-lg">
 
-                        <span class="d-inline h5 ml-1 text-logo"><span class="text-warning">Administrator</span> Website</span>
+                        <span class="d-inline h5 ml-1 text-logo"><span class="text-danger">KAMPUS</span> MERDEKA</span>
                     </span>
                     <span class="logo-sm">
                         <img src="assets/images/logo.png" alt="" height="24">
@@ -25,7 +25,7 @@
                     </li>
                 </ul>
 
-                <ul class="navbar-nav flex-row ml-auto d-flex list-unstyled topnav-menu float-right mb-0">
+                <!-- <ul class="navbar-nav flex-row ml-auto d-flex list-unstyled topnav-menu float-right mb-0">
                     <li class="d-none d-sm-block">
                         <div class="app-search">
                             <form>
@@ -38,7 +38,7 @@
                     </li>
 
 
-                </ul>
+                </ul> -->
             </div>
 
         </div>

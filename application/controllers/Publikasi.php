@@ -12,13 +12,13 @@ class Publikasi extends CI_Controller
     $this->load->library('form_validation');
     $this->load->library('session');
     $this->load->library('upload');
-    if (!$this->session->userdata('email')) {
+    if (!$this->session->userdata('username')) {
       redirect('auth');
     }
   }
   public function index()
   {
-    $data['user'] = $this->db->get_where('tb_admin', ['email' => $this->session->userdata('email')])->row_array();
+    $data['user'] = $this->db->get_where('tb_admin', ['username' => $this->session->userdata('username')])->row_array();
     $data['judul'] = 'Publikasi | Data';
     $data['pub'] = $this->M_publikasi->tampil_data()->result();
     $data['pubkat'] = $this->M_pubkat->tampil_data()->result();

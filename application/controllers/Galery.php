@@ -12,13 +12,13 @@ class Galery extends CI_Controller
         $this->load->library('form_validation');
         $this->load->library('session');
         $this->load->library('upload');
-        if (!$this->session->userdata('email')) {
+        if (!$this->session->userdata('username')) {
             redirect('auth');
         }
     }
     public function index()
     {
-        $data['user'] = $this->db->get_where('tb_admin', ['email' => $this->session->userdata('email')])->row_array();
+        $data['user'] = $this->db->get_where('tb_admin', ['username' => $this->session->userdata('username')])->row_array();
         $data['judul'] = 'Galery | Data';
         $data['gal'] = $this->M_galery->tampil_data()->result();
         $data['galkat'] = $this->M_galkat->tampil_data()->result();
@@ -31,7 +31,7 @@ class Galery extends CI_Controller
     }
     public function tambah()
     {
-        $data['user'] = $this->db->get_where('tb_admin', ['email' => $this->session->userdata('email')])->row_array();
+        $data['user'] = $this->db->get_where('tb_admin', ['username' => $this->session->userdata('username')])->row_array();
         $data['judul'] = 'Galery | Tambah Data';
         $data['galkat'] = $this->M_galkat->tampil_data()->result();
 
@@ -76,6 +76,7 @@ class Galery extends CI_Controller
             $imgdata = file_get_contents($image_data['full_path']);
             // $file_encode = base64_encode($imgdata);
             $data['id_galkat'] = $this->input->post('id_galkat');
+
             $data['ket'] = $this->input->post('ket');
             $data['file'] =  $this->upload->data('file_name');
             $data['tgl_upload'] = date('y-m-d');

@@ -23,6 +23,12 @@
     <link href="<?= base_url('assets/'); ?>assets/libs/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
     <link href="<?= base_url('assets/'); ?>assets/libs/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
     <link href="<?= base_url('assets/'); ?>assets/libs/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-    <link href="<?= base_url('assets/'); ?>assets/libs/datatables/select.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="<?= base_url('assets/'); ?>libs/datatables/select.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+
+    <script src="<?= base_url('assets/'); ?>assets/js/vendor.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.1.7/sweetalert2.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.1.7/sweetalert2.min.js"></script>
+
 
 </head>
