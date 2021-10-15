@@ -44,12 +44,14 @@
                                                 $filesop = FileSOPMagang($r->kfak);
                                                 $filepob = FilePOBMagang($r->kfak);
                                                 if ($filesop == TRUE) {
-                                                    echo '<a data-fancybox data-type="iframe" data-src="' . base_url('berkas/filemagang/' . $filesop) . '" href="javascript:;"> <i class="uil uil-file mr-1"></i> LAMPIRAN SOP</a>';
+                                                    echo '<a data-fancybox data-type="iframe" data-src="' . base_url('berkas/filemagang/' . $filesop) . '" href="javascript:;"> <i class="uil uil-file mr-1"></i>SOP</a>';
+                                                    echo '<a href="#" onclick="filesopedit(\'' . $r->kfak . '\')"><i class="uil uil-edit mr-2"></i></a>';
                                                 } else {
                                                     echo '<button class="btn btn-danger mr-4 mb-3 btn-xs  mb-sm-0" onclick="uploads(\'' . $r->kfak . '\')">File SOP Belum diUpload</button>';
                                                 }
                                                 if ($filepob == TRUE) {
-                                                    echo '<a data-fancybox data-type="iframe" data-src="' . base_url('berkas/filemagang/' . $filepob) . '" href="javascript:;"> <i class="uil uil-file mr-1"></i> LAMPIRAN POB</a>';
+                                                    echo '<a data-fancybox data-type="iframe" data-src="' . base_url('berkas/filemagang/' . $filepob) . '" href="javascript:;"> <i class="uil uil-file mr-1"></i>POB</a>';
+                                                    echo '<a href="#" onclick="filepobedit(\'' . $r->kfak . '\')"><i class="uil uil-edit mr-2"></i></a>';
                                                 } else {
                                                     echo '<button class="btn btn-danger mr-4 mb-3 btn-xs  mb-sm-0" onclick="uploadpob(\'' . $r->kfak . '\')">File POB Belum diUpload</button>';
                                                 }
@@ -59,11 +61,11 @@
                                             <td><?= $r->n_fak; ?></td>
                                             <td scope="row">
                                                 <center>
-                                                    <a href="<?= site_url('admin/program/magang/edit/') . $r->idmagang ?>" class="text-info d-inline-block " data-toggle="tooltip" data-placement="top" title="" data-original-title="edit data">
+                                                    <a href="<?= site_url('admin/program/magang/edit/') . encrypt_url($r->idmagang) ?>" class="text-info d-inline-block " data-toggle="tooltip" data-placement="top" title="" data-original-title="edit data">
                                                         <i class="uil uil-edit mr-1"></i>
                                                     </a>
                                                     &nbsp;
-                                                    <a href="<?= site_url('admin/program/magang/hapus_magang/') . $r->idmagang ?>" class="text-danger d-inline-block" data-toggle="tooltip" data-placement="top" title="" data-original-title="hapus data">
+                                                    <a href="<?= site_url('admin/program/magang/delete/') . encrypt_url($r->idmagang) ?>" class="text-danger d-inline-block" data-toggle="tooltip" data-placement="top" title="" data-original-title="hapus data">
                                                         <i class="uil uil-trash mr-1"></i>
                                                     </a>
                                                 </center>
@@ -89,7 +91,27 @@
             url: "<?php base_url() ?>program/form_upload",
             data: dataString,
             beforeSend: function() {
-                console.log(dataString);
+                //  console.log(dataString);
+                $('html, body').animate({
+                    scrollTop: 0
+                }, 'slow');
+                $("#result").html('<img src="<?= base_url(); ?>assets/images/loading.gif" align="absmiddle" alt="Loading..."> Loading...<br clear="all" /><br clear="all" />');
+            },
+            success: function(response) {
+                $("#result").html(response);
+            }
+        });
+    }
+
+    function filesopedit(kfak) {
+
+        var dataString = "kfak=" + kfak;
+        $.ajax({
+            type: "GET",
+            url: "<?php base_url() ?>program/form_upload",
+            data: dataString,
+            beforeSend: function() {
+                //console.log(dataString);
                 $('html, body').animate({
                     scrollTop: 0
                 }, 'slow');
@@ -108,7 +130,7 @@
             url: "<?php base_url() ?>program/form_pob",
             data: dataString,
             beforeSend: function() {
-                console.log(dataString);
+                //console.log(dataString);
                 $('html, body').animate({
                     scrollTop: 0
                 }, 'slow');

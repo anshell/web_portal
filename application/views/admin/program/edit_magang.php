@@ -25,7 +25,7 @@
                             <h3>Ubah Kegiatan Magang</h3>
                         </div>
                         <div class="card-body">
-                            <?php echo form_open("admin/program/magang/update", array('enctype' => 'multipart/form-data')); ?>
+                            <?php echo form_open("admin/program/magang/update"); ?>
                             <div class="row">
                                 <div class="col">
                                     <?php
@@ -35,37 +35,14 @@
                                     <div class="form-group row">
                                         <label class="col-lg-2 col-form-label" for="example-textarea">Isi Kegiatan </label>
                                         <input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>">
+                                        <input type="hidden" name="idmagang" value="<?= $magang->idmagang; ?>">
                                         <div class="col-lg-10">
                                             <textarea rows="5" name='rencana'>
                                                 <?= $magang->rencana; ?>
                                                  </textarea>
                                         </div>
                                     </div>
-                                    <div class="form-group row">
-                                        <label class="col-lg-2 col-form-label" for="example-textarea">SOP</label>
 
-                                        <div class="col-lg-3">
-                                            <p><?= $magang->file_sop; ?></p>
-                                            <input type="text" class="form-control" name="idmagang" value="<?= $magang->idmagang; ?>">
-                                            <input type="file" class="form-control" name="file" placeholder="FIle" required>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-lg-2 col-form-label" for="example-textarea">POB</label>
-
-                                        <div class="col-lg-3">
-                                            <p><?= $magang->file_pob; ?></p>
-                                            <input type="file" class="form-control" name="file_pob" placeholder="FIle" required>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-lg-2 col-form-label" for="example-textarea">Gambar</label>
-
-                                        <div class="col-lg-3">
-                                            <p><?= $magang->file_img; ?></p>
-                                            <input type="file" class="form-control" name="file_image" placeholder="FIle" required>
-                                        </div>
-                                    </div>
                                     <div class="form-group row">
                                         <label class="col-lg-2 col-form-label" for="example-textarea">Fakultas</label>
 

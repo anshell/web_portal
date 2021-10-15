@@ -31,11 +31,11 @@ class Homepub extends CI_Controller
         $data['pubkat'] = $this->M_pubkat->tampil_data()->result();
         $data['opd'] = $this->M_opd->tampil_data()->result();
         $data['terkini'] = $this->M_berita->terkini()->result();
-        $this->load->view('layout/head');
-        $this->load->view('layout/header', $data);
+        $this->load->view('layout/frontheader', $data);
+        $this->load->view('layout/frontnav', $data);
         $this->load->view('layout/slider');
         $this->load->view('home', $data);
-        $this->load->view('layout/footer');
+        $this->load->view('layout/frontfooter', $data);
     }
     public function show($slug)
     {
@@ -53,10 +53,10 @@ class Homepub extends CI_Controller
 
         $data['pubshow'] = $this->M_pubkat->edit_data($where, 'tb_pubkat')->result();
         $data['pk'] = $this->M_publikasi->pubandkat();
-        $this->load->view('layout/head', $data);
-        $this->load->view('layout/header', $data);
+        $this->load->view('layout/frontheader', $data);
+        $this->load->view('layout/frontnav', $data);
 
         $this->load->view('publikasishow', $data);
-        $this->load->view('layout/footer', $data);
+        $this->load->view('layout/frontfooter', $data);
     }
 }

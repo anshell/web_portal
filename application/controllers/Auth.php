@@ -8,35 +8,32 @@ class Auth extends CI_Controller
     {
         parent::__construct();
         $this->load->library('form_validation');
-        $this->load->model('M_opd');
     }
 
     public function index()
     {
-        $data['opd'] = $this->M_opd->tampil_data()->result();
-        $data['judul'] = 'Login';
-        $this->load->view('admin/frontauth/head', $data);
-        $this->load->view('admin/frontauth/header', $data);
-        $this->load->view('admin/auth/login', $data);
-    }
-    public function login()
-    {
+        if (isset($_POST['submit'])) {
 
-        $this->form_validation->set_rules('username', 'username', 'required');
-        $this->form_validation->set_rules('password', 'Password', 'required|trim');
+            $this->form_validation->set_rules('username', 'username', 'required');
+            $this->form_validation->set_rules('password', 'Password', 'required|trim');
+            if ($this->form_validation->run() == false) {
 
-
-        if ($this->form_validation->run() == false) {
-            $data['title'] = 'Login Kampus Merdeka';
-            redirect('auth');
-        } else {
-            $this->_ceklogin();
+                redirect('auth', 'refresh');
+            } else {
+                $this->_ceklogin();
+            }
         }
+
+        $this->load->view('layout/loginheader');
+        $this->load->view('layout/loginnav');
+        $this->load->view('admin/auth/login');
+        $this->load->view('layout/loginfooter');
     }
+
     private function _ceklogin()
     {
-        $username = $this->input->post('username');
-        $password = $this->input->post('password');
+        $username = htmlspecialchars($this->input->post('username', TRUE), ENT_QUOTES);
+        $password = htmlspecialchars($this->input->post('password', TRUE), ENT_QUOTES);
 
         $user = $this->db->get_where('tb_admin', ['username' => $username])->row_array();
 
@@ -52,9 +49,7 @@ class Auth extends CI_Controller
                     $this->session->set_userdata($data);
                     redirect('admin');
                 } else {
-                    $this->session->set_flashdata('message', '<div class="alert alert-warning" role="alert">
-                Password salah!
-              </div>');
+                    $this->session->set_flashdata('success', 'Password salah!');
                     redirect('auth', 'refresh');
                 }
             } else if ($user['role'] == 2) {
@@ -64,27 +59,23 @@ class Auth extends CI_Controller
                         'username' => $user['username'],
                         'nama' => $user['nama'],
                         'role' => $user['role'],
+                        'kfak' => $user['kfak'],
+                        'kpst' => $user['kpst'],
                     ];
                     $this->session->set_userdata($data);
                     redirect('operator');
                 } else {
-                    $this->session->set_flashdata('message', '<div class="alert alert-warning" role="alert">
-                Password salah!
-              </div>');
+                    $this->session->set_flashdata('error', 'Password salah!');
                     redirect('auth', 'refresh');
                 }
             } else {
-                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
-                Error!
-              </div>');
+                $this->session->set_flashdata('error', 'Error!');
                 redirect('auth', 'refresh');
             }
         } else {
-            $this->session->set_flashdata('message', '<div class="alert alert-warning" role="alert">
-        Not Registered!
-      </div>');
+            $this->session->set_flashdata('error', 'terjadi kesalahan!');
         }
-        redirect('auth');
+        redirect('auth', 'refresh');
     }
 
     public function logout()

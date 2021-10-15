@@ -17,130 +17,163 @@ class Program extends CI_Controller
         $this->load->model('M_beritakat');
         $this->load->model('M_unitkat');
         $this->load->model('M_opd');
+        $this->load->model('M_program');
         $this->load->helper('url', 'form');
         $this->load->library('form_validation');
     }
 
     public function index()
     {
-        $data['opd'] = $this->M_opd->tampil_data()->result();
-        $data['now'] = date("j F Y");
-        $data['aktif'] = 'active';
-        $data['status'] = '1';
-        $data['terkini'] = $this->M_berita->terkini()->result();
-        $data['galkat'] = $this->M_galkat->tampil_data()->result();
-        $data['pubkat'] = $this->M_pubkat->tampil_data()->result();
+        $data = array(
+            'aktif' => 'aktif',
+            'status' => '1',
+            'opd' => $this->M_opd->tampil_data()->result(),
+            'sli' => $this->M_slide->tampil_data()->result(),
+            'prog' => $this->M_program->tampil_data()->result(),
+            'galkat' => $this->M_galkat->tampil_data()->result(),
+            'pubkat' => $this->M_pubkat->tampil_data()->result(),
+            'info' => $this->M_program->tampil_data()->result(),
+            'magang' => $this->M_program->front_data_magang()
 
-        $this->load->view('layout/head', $data);
-        $this->load->view('layout/header', $data);
+        );
+
+        $this->load->view('layout/frontheader', $data);
+        $this->load->view('layout/frontnav', $data);
         $this->load->view('program/magang', $data);
-        $this->load->view('layout/footer', $data);
+        $this->load->view('layout/frontfooter', $data);
     }
 
     public function mengajar()
     {
-        $data['opd'] = $this->M_opd->tampil_data()->result();
-        $data['now'] = date("j F Y");
-        $data['aktif'] = 'active';
-        $data['status'] = '1';
-        $data['terkini'] = $this->M_berita->terkini()->result();
-        $data['galkat'] = $this->M_galkat->tampil_data()->result();
-        $data['pubkat'] = $this->M_pubkat->tampil_data()->result();
+        $data = array(
+            'aktif' => 'aktif',
+            'status' => '1',
+            'opd' => $this->M_opd->tampil_data()->result(),
+            'sli' => $this->M_slide->tampil_data()->result(),
+            'prog' => $this->M_program->tampil_data()->result(),
+            'galkat' => $this->M_galkat->tampil_data()->result(),
+            'pubkat' => $this->M_pubkat->tampil_data()->result(),
+            'info' => $this->M_program->tampil_data()->result()
 
-        $this->load->view('layout/head', $data);
-        $this->load->view('layout/header', $data);
+        );
+
+        $this->load->view('layout/frontheader', $data);
+        $this->load->view('layout/frontnav', $data);
         $this->load->view('program/mengajar', $data);
-        $this->load->view('layout/footer', $data);
+        $this->load->view('layout/frontfooter', $data);
     }
 
     public function kkn()
     {
-        $data['opd'] = $this->M_opd->tampil_data()->result();
-        $data['now'] = date("j F Y");
-        $data['aktif'] = 'active';
-        $data['status'] = '1';
-        $data['terkini'] = $this->M_berita->terkini()->result();
-        $data['galkat'] = $this->M_galkat->tampil_data()->result();
-        $data['pubkat'] = $this->M_pubkat->tampil_data()->result();
+        $data = array(
+            'aktif' => 'aktif',
+            'status' => '1',
+            'opd' => $this->M_opd->tampil_data()->result(),
+            'sli' => $this->M_slide->tampil_data()->result(),
+            'prog' => $this->M_program->tampil_data()->result(),
+            'galkat' => $this->M_galkat->tampil_data()->result(),
+            'pubkat' => $this->M_pubkat->tampil_data()->result(),
+            'info' => $this->M_program->tampil_data()->result()
 
-        $this->load->view('layout/head', $data);
-        $this->load->view('layout/header', $data);
+        );
+
+        $this->load->view('layout/frontheader', $data);
+        $this->load->view('layout/frontnav', $data);
         $this->load->view('program/kkn', $data);
-        $this->load->view('layout/footer', $data);
+        $this->load->view('layout/frontfooter', $data);
     }
     public function wirausaha()
     {
-        $data['opd'] = $this->M_opd->tampil_data()->result();
-        $data['now'] = date("j F Y");
-        $data['aktif'] = 'active';
-        $data['status'] = '1';
-        $data['terkini'] = $this->M_berita->terkini()->result();
-        $data['galkat'] = $this->M_galkat->tampil_data()->result();
-        $data['pubkat'] = $this->M_pubkat->tampil_data()->result();
+        $data = array(
+            'aktif' => 'aktif',
+            'status' => '1',
+            'opd' => $this->M_opd->tampil_data()->result(),
+            'sli' => $this->M_slide->tampil_data()->result(),
+            'prog' => $this->M_program->tampil_data()->result(),
+            'galkat' => $this->M_galkat->tampil_data()->result(),
+            'pubkat' => $this->M_pubkat->tampil_data()->result(),
+            'info' => $this->M_program->tampil_data()->result()
 
-        $this->load->view('layout/head', $data);
-        $this->load->view('layout/header', $data);
+        );
+
+        $this->load->view('layout/frontheader', $data);
+        $this->load->view('layout/frontnav', $data);
         $this->load->view('program/wirausaha', $data);
-        $this->load->view('layout/footer', $data);
+        $this->load->view('layout/frontfooter', $data);
     }
     public function pertukaran()
     {
-        $data['opd'] = $this->M_opd->tampil_data()->result();
-        $data['now'] = date("j F Y");
-        $data['aktif'] = 'active';
-        $data['status'] = '1';
-        $data['terkini'] = $this->M_berita->terkini()->result();
-        $data['galkat'] = $this->M_galkat->tampil_data()->result();
-        $data['pubkat'] = $this->M_pubkat->tampil_data()->result();
+        $data = array(
+            'aktif' => 'aktif',
+            'status' => '1',
+            'opd' => $this->M_opd->tampil_data()->result(),
+            'sli' => $this->M_slide->tampil_data()->result(),
+            'prog' => $this->M_program->tampil_data()->result(),
+            'galkat' => $this->M_galkat->tampil_data()->result(),
+            'pubkat' => $this->M_pubkat->tampil_data()->result(),
+            'info' => $this->M_program->tampil_data()->result()
 
-        $this->load->view('layout/head', $data);
-        $this->load->view('layout/header', $data);
+        );
+
+        $this->load->view('layout/frontheader', $data);
+        $this->load->view('layout/frontnav', $data);
         $this->load->view('program/pertukaran', $data);
-        $this->load->view('layout/footer', $data);
+        $this->load->view('layout/frontfooter', $data);
     }
     public function penelitian()
     {
-        $data['opd'] = $this->M_opd->tampil_data()->result();
-        $data['now'] = date("j F Y");
-        $data['aktif'] = 'active';
-        $data['status'] = '1';
-        $data['terkini'] = $this->M_berita->terkini()->result();
-        $data['galkat'] = $this->M_galkat->tampil_data()->result();
-        $data['pubkat'] = $this->M_pubkat->tampil_data()->result();
+        $data = array(
+            'aktif' => 'aktif',
+            'status' => '1',
+            'opd' => $this->M_opd->tampil_data()->result(),
+            'sli' => $this->M_slide->tampil_data()->result(),
+            'prog' => $this->M_program->tampil_data()->result(),
+            'galkat' => $this->M_galkat->tampil_data()->result(),
+            'pubkat' => $this->M_pubkat->tampil_data()->result(),
+            'info' => $this->M_program->tampil_data()->result()
 
-        $this->load->view('layout/head', $data);
-        $this->load->view('layout/header', $data);
+        );
+
+        $this->load->view('layout/frontheader', $data);
+        $this->load->view('layout/frontnav', $data);
         $this->load->view('program/penelitian', $data);
-        $this->load->view('layout/footer', $data);
+        $this->load->view('layout/frontfooter', $data);
     }
     public function kemanusiaan()
     {
-        $data['opd'] = $this->M_opd->tampil_data()->result();
-        $data['now'] = date("j F Y");
-        $data['aktif'] = 'active';
-        $data['status'] = '1';
-        $data['terkini'] = $this->M_berita->terkini()->result();
-        $data['galkat'] = $this->M_galkat->tampil_data()->result();
-        $data['pubkat'] = $this->M_pubkat->tampil_data()->result();
+        $data = array(
+            'aktif' => 'aktif',
+            'status' => '1',
+            'opd' => $this->M_opd->tampil_data()->result(),
+            'sli' => $this->M_slide->tampil_data()->result(),
+            'prog' => $this->M_program->tampil_data()->result(),
+            'galkat' => $this->M_galkat->tampil_data()->result(),
+            'pubkat' => $this->M_pubkat->tampil_data()->result(),
+            'info' => $this->M_program->tampil_data()->result()
 
-        $this->load->view('layout/head', $data);
-        $this->load->view('layout/header', $data);
+        );
+
+        $this->load->view('layout/frontheader', $data);
+        $this->load->view('layout/frontnav', $data);
         $this->load->view('program/kemanusiaan', $data);
-        $this->load->view('layout/footer', $data);
+        $this->load->view('layout/frontfooter', $data);
     }
     public function independen()
     {
-        $data['opd'] = $this->M_opd->tampil_data()->result();
-        $data['now'] = date("j F Y");
-        $data['aktif'] = 'active';
-        $data['status'] = '1';
-        $data['terkini'] = $this->M_berita->terkini()->result();
-        $data['galkat'] = $this->M_galkat->tampil_data()->result();
-        $data['pubkat'] = $this->M_pubkat->tampil_data()->result();
+        $data = array(
+            'aktif' => 'aktif',
+            'status' => '1',
+            'opd' => $this->M_opd->tampil_data()->result(),
+            'sli' => $this->M_slide->tampil_data()->result(),
+            'prog' => $this->M_program->tampil_data()->result(),
+            'galkat' => $this->M_galkat->tampil_data()->result(),
+            'pubkat' => $this->M_pubkat->tampil_data()->result(),
+            'info' => $this->M_program->tampil_data()->result()
 
-        $this->load->view('layout/head', $data);
-        $this->load->view('layout/header', $data);
+        );
+        $this->load->view('layout/frontheader', $data);
+        $this->load->view('layout/frontnav', $data);
         $this->load->view('program/independen', $data);
-        $this->load->view('layout/footer', $data);
+        $this->load->view('layout/frontfooter', $data);
     }
 }

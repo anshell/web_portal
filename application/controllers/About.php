@@ -37,10 +37,10 @@ class About extends CI_Controller
 
 
 
-        $this->load->view('layout/head', $data);
-        $this->load->view('layout/header', $data);
+        $this->load->view('layout/frontheader', $data);
+        $this->load->view('layout/frontnav', $data);
         $this->load->view('about', $data);
-        $this->load->view('layout/footer', $data);
+        $this->load->view('layout/frontfooter', $data);
     }
 
     public function peran()
@@ -54,10 +54,10 @@ class About extends CI_Controller
         $data['peran'] = $this->M_profil->getAllProfil()->result();
 
 
-        $this->load->view('layout/head', $data);
-        $this->load->view('layout/header', $data);
+        $this->load->view('layout/frontheader', $data);
+        $this->load->view('layout/frontnav', $data);
         $this->load->view('peran', $data);
-        $this->load->view('layout/footer', $data);
+        $this->load->view('layout/frontfooter', $data);
     }
 
     public function pengelola()
@@ -71,9 +71,9 @@ class About extends CI_Controller
         $data['pengelola'] = $this->M_profil->getAllPengelola()->result();
 
 
-        $this->load->view('layout/head', $data);
-        $this->load->view('layout/header', $data);
+        $this->load->view('layout/frontheader', $data);
+        $this->load->view('layout/frontnav', $data);
         $this->load->view('pengelola', $data);
-        $this->load->view('layout/footer', $data);
+        $this->load->view('layout/frontfooter', $data);
     }
 }

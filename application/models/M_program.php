@@ -16,7 +16,20 @@ class M_program extends CI_Model
 
         return $this->db->get();
     }
+    function front_data_magang()
+    {
+        $this->db->select('*');
+        $this->db->from('tb_magang');
+        $this->db->join('tbl_fakultas', 'tb_magang.kfak=tbl_fakultas.kfak');
+        $this->db->join('file_sopmagang', 'tb_magang.kfak=file_sopmagang.kfak');
+        $this->db->join('file_pobmagang', 'tb_magang.kfak=file_pobmagang.kfak');
+        $this->db->order_by('idmagang', 'desc');
 
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        }
+    }
     function viewby_id_magang($id)
     {
         $this->db->select('*');
@@ -40,16 +53,44 @@ class M_program extends CI_Model
             return $query->row();
         }
     }
+    function ceksop($id)
+    {
+        $this->db->select('*');
+        $this->db->from('file_sopmagang');
+        $this->db->where('kfak', $id);
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) {
+            return $query->row();
+        }
+    }
+
     public function save_sop($data)
     {
 
         return $this->db->insert("file_sopmagang", $data);
+    }
+
+    public function updateFileSOP($file, $id)
+    {
+
+        $data = array(
+            'file_sop' => $file
+        );
+        $this->db->where('idsop', $id);
+        $this->db->update('file_sopmagang', $data);
+        return TRUE;
     }
     public function save_pob($data)
     {
 
         return $this->db->insert("file_pobmagang", $data);
     }
+
+
+
+
+
+
 
     function simpan_data($data, $table)
     {
@@ -69,59 +110,5 @@ class M_program extends CI_Model
     {
         $this->db->where($where);
         $this->db->delete($table);
-    }
-    function simpan_upload($judul, $kat, $isi, $gambar, $upl, $upd, $slug, $publik)
-    {
-        $hasil = $this->db->query("INSERT INTO tb_berita(judul,id_beritakat,isi_berita,foto_berita,upload_at,update_at,slug,publik) VALUES ('$judul','$kat','$isi','$gambar','$upl','$upd','$slug','$publik')");
-        return $hasil;
-    }
-    public function berandkat()
-    {
-        $this->db->select('*');
-        $this->db->from('tb_katberita');
-        $this->db->join('tb_berita', 'tb_berita.id_beritakat=tb_katberita.id_beritakat');
-
-        return $this->db->get();
-    }
-    function update_counter($slug)
-    {
-        //return current article views
-        $this->db->where('slug', urldecode($slug));
-        $this->db->select('visitor');
-        $count = $this->db->get('tb_berita')->row();
-        // then increase by one
-        $n = floatval(1);
-        $this->db->where('slug', urldecode($slug));
-        $this->db->set('visitor', ($count->visitor + $n));
-        $this->db->update('tb_berita');
-    }
-    // ini untuk dashboard admin
-    function trending()
-    {
-        $this->db->select('*');
-        $this->db->from('tb_katberita');
-        $this->db->join('tb_berita', 'tb_berita.id_beritakat=tb_katberita.id_beritakat');
-        $this->db->order_by('visitor', 'desc');
-        $this->db->limit(3);
-        return $this->db->get();
-    }
-    public function hitungvisitor()
-    {
-        $this->db->select_sum('visitor');
-        $query = $this->db->get('tb_berita');
-        if ($query->num_rows() > 0) {
-            return $query->row()->visitor;
-        } else {
-            return 0;
-        }
-    }
-    function edit_berita($where, $table)
-    {
-        return $this->db->get_where($table, $where);
-    }
-    function update_berita($where, $data, $table)
-    {
-        $this->db->where($where);
-        $this->db->update($table, $data);
     }
 }

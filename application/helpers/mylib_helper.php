@@ -132,8 +132,38 @@ function FileSOPMagang($kfak)
   }
 }
 
+function logo()
+{
+  $ci = &get_instance();
+  $ci->load->database();
+  $sql = "SELECT * FROM tb_opd";
+  $query = $ci->db->query($sql);
+  $row = $query->row_array();
+  return $row['file'];
+}
+function titelfront()
+{
+  $ci = &get_instance();
+  $ci->load->database();
+  $sql = "SELECT * FROM tb_opd";
+  $query = $ci->db->query($sql);
+  $row = $query->row_array();
+  return $row['nama_pendek'];
+}
+function showinformasi()
+{
+  $ci = &get_instance();
+  $ci->load->database();
+  $sql = "SELECT * FROM tb_informasi WHERE setaktif='1'";
+  $query = $ci->db->query($sql);
+  $row = $query->result_array();
+  foreach ($row as $info) {
+    echo '<div class="breaking-post-content">';
+    echo '<p>' . $info['informasi'] . '</p>&nbsp;&nbsp;&nbsp;';
 
-
+    echo '</div>';
+  }
+}
 
 function FilePOBMagang($kfak)
 {

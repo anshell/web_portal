@@ -30,11 +30,11 @@ class Homegalery extends CI_Controller
         $data['opd'] = $this->M_opd->tampil_data()->result();
         $data['terkini'] = $this->M_berita->terkini()->result();
         $data['unitkat'] = $this->M_unitkat->tampil_data()->result();
-        $this->load->view('layout/head');
-        $this->load->view('layout/header', $data);
+        $this->load->view('layout/frontheader', $data);
+        $this->load->view('layout/frontnav', $data);
         $this->load->view('layout/slider');
         $this->load->view('home', $data);
-        $this->load->view('layout/footer');
+        $this->load->view('layout/frontfooter', $data);
     }
     public function show($slug)
     {
@@ -52,10 +52,10 @@ class Homegalery extends CI_Controller
         $data['galshow'] = $this->M_galkat->edit_data($where, 'tb_galkat')->result();
         $data['gk'] = $this->M_galery->galandkat();
 
-        $this->load->view('layout/head', $data);
-        $this->load->view('layout/header', $data);
+        $this->load->view('layout/frontheader', $data);
+        $this->load->view('layout/frontnav', $data);
 
         $this->load->view('galeryshow', $data);
-        $this->load->view('layout/footer', $data);
+        $this->load->view('layout/frontfooter', $data);
     }
 }

@@ -17,6 +17,7 @@ class Home extends CI_Controller
 		$this->load->model('M_beritakat');
 		$this->load->model('M_unitkat');
 		$this->load->model('M_program');
+		$this->load->model('M_informasi');
 		$this->load->model('M_opd');
 		$this->load->helper('url', 'form');
 		$this->load->library('form_validation');
@@ -24,34 +25,23 @@ class Home extends CI_Controller
 
 	public function index()
 	{
-		$data['opd'] = $this->M_opd->tampil_data()->result();
-		$data['now'] = date("j F Y");
-		$data['aktif'] = 'active';
-		$data['status'] = '1';
-		$data['news'] = $this->M_berita->tampil_data()->result();
 
-		$data['galkat'] = $this->M_galkat->tampil_data()->result();
-		$data['pubkat'] = $this->M_pubkat->tampil_data()->result();
+		$data = array(
+			'aktif' => 'aktif',
+			'status' => '1',
+			'opd' => $this->M_opd->tampil_data()->result(),
+			'sli' => $this->M_slide->tampil_data()->result(),
+			'prog' => $this->M_program->tampil_data()->result(),
+			'galkat' => $this->M_galkat->tampil_data()->result(),
+			'pubkat' => $this->M_pubkat->tampil_data()->result(),
+			'info' => $this->M_program->tampil_data()->result()
 
-		$data['unitkat'] = $this->M_unitkat->tampil_data()->result();
-
-		$data['kb'] = $this->M_beritakat->tampil_data()->result();
-		$data['pk'] = $this->M_publikasi->pubandkat();
-		$data['gk'] = $this->M_galery->galandkat();
-		$data['sli'] = $this->M_slide->tampil_data()->result();
-		$data['terkini'] = $this->M_berita->terkini()->result();
-		$data['blmt'] = $this->M_berita->beritalmt()->result();
-		$data['new'] = $this->M_berita->beritanew()->result();
-		$data['po'] = $this->M_berita->populer()->result();
-		$data['top'] = $this->M_berita->topsatu()->result();
-		$data['baru'] = $this->M_berita->baru()->result();
-		$data['prog'] = $this->M_program->tampil_data()->result();
-
-		$this->load->view('layout/head', $data);
-		$this->load->view('layout/header', $data);
+		);
+		$this->load->view('layout/frontheader', $data);
+		$this->load->view('layout/frontnav', $data);
 		$this->load->view('layout/slider', $data);
 		$this->load->view('home', $data);
-		$this->load->view('layout/footer', $data);
+		$this->load->view('layout/frontfooter', $data);
 	}
 	public function show($slug)
 	{
@@ -62,8 +52,7 @@ class Home extends CI_Controller
 		$data['aktif'] = 'active';
 		$data['status'] = '9';
 		$data['news'] = $this->M_berita->tampil_data()->result();
-		$data['misi'] = $this->M_misi->tampil_data()->result();
-		$data['visi'] = $this->M_visi->tampil_data()->result();
+
 		$data['galkat'] = $this->M_galkat->tampil_data()->result();
 		$data['pubkat'] = $this->M_pubkat->tampil_data()->result();
 		$data['pk'] = $this->M_publikasi->pubandkat();
@@ -79,10 +68,10 @@ class Home extends CI_Controller
 		$data['sb'] = $this->M_berita->edit_data($where, 'tb_berita')->result();
 		$data['bk'] = $this->M_beritakat->tampil_data()->result();
 
-		$this->load->view('layout/meta', $data);
-		$this->load->view('layout/header', $data);
+		$this->load->view('layout/frontheader', $data);
+		$this->load->view('layout/frontnav', $data);
 		$this->load->view('show', $data);
-		$this->load->view('layout/footer', $data);
+		$this->load->view('layout/frontfooter', $data);
 		$this->add_count($slug);
 	}
 	function add_count($slug)
@@ -126,10 +115,10 @@ class Home extends CI_Controller
 		$data['baru'] = $this->M_berita->baru()->result();
 		$data['all'] = $this->M_berita->allberita()->result();
 
-		$this->load->view('layout/head', $data);
-		$this->load->view('layout/header', $data);
+		$this->load->view('layout/frontheader', $data);
+		$this->load->view('layout/frontnav', $data);
 
 		$this->load->view('allberita', $data);
-		$this->load->view('layout/footer', $data);
+		$this->load->view('layout/frontfooter', $data);
 	}
 }

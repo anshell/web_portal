@@ -47,7 +47,7 @@ $route['admin/profil/update'] = 'profile/update';
 
 // organisai routes
 $route['admin/profil/organisasi'] = 'organisasi';
-$route['admin/profil/organisasi/edit/(:num)'] = 'organisasi/edit/$1';
+$route['admin/profil/organisasi/edit/(:num)'] = 'organisasi/edit/';
 $route['admin/profil/organisasi/update'] = 'organisasi/update';
 
 // routes program Kampus Merdeka
@@ -58,11 +58,12 @@ $route['admin/program/add_magang'] = 'programkampus/add_magang';
 $route['admin/program/form_upload'] = 'programkampus/form_upload';
 $route['admin/program/form_pob'] = 'programkampus/form_pob';
 $route['admin/program/upload_sop'] = 'programkampus/upload_sop';
+$route['admin/program/eupload_sop'] = 'programkampus/eupload_sop';
 $route['admin/program/upload_pob'] = 'programkampus/upload_pob';
 $route['admin/program/simpan_magang'] = 'programkampus/simpan_magang';
-$route['admin/program/magang/edit/(:num)'] = 'programkampus/edit_magang/$1';
+$route['admin/program/magang/edit/(:any)'] = 'programkampus/edit_magang/$1';
 $route['admin/program/magang/update'] = 'programkampus/update_magang';
-$route['admin/program/magang/delete/(:num)'] = 'programkampus/magang_hapus/$1';
+$route['admin/program/magang/delete/(:any)'] = 'programkampus/magang_hapus/$1';
 
 $route['admin/program/mengajar'] = 'programkampus/mengajar';
 $route['admin/program/penelitian'] = 'programkampus/penelitian';
